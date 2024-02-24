@@ -11,7 +11,7 @@ const CommentSection = () => {
   const [sortingFilter, setSortingFilter] = useState(null);
 
   const notify = (message) => {
-    const position = window.innerWidth <= 426 ? "top-right" : "top-center";
+    const position = window.matchMedia <= 426 ? "top-right" : "top-center";
     toast(message, { 
         position:position,
          autoClose: 3000 ,
@@ -86,7 +86,6 @@ const CommentSection = () => {
       return comment;
     });
     setComments(updatedComments);
-    notify("Comment starred/unstarred!");
   };
 
   return (
