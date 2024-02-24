@@ -11,14 +11,13 @@ const CommentSection = () => {
   const [sortingFilter, setSortingFilter] = useState(null);
 
   const notify = (message) => {
-    const position = window.matchMedia <= 426 ? "top-right" : "top-center";
-    toast(message, { 
-        position:position,
-         autoClose: 3000 ,
-         className:"toastbody",
-         bodyClassName:"toasbody",
-         draggable:"true",
-        });
+    toast(message, {
+      position: "top-right",
+      autoClose: 3000,
+      className: "toastbody",
+      bodyClassName: "toasbody",
+      draggable: "true",
+    });
   };
 
   const addComment = (newComment) => {
