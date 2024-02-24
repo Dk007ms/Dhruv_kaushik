@@ -1,17 +1,20 @@
 /* Comment.css */
+
 .comment {
-  font-family: Arial, sans-serif; /* Use a professional font */
-  font-size: 16px; /* Set a comfortable font size */
-  border: 1px solid #ddd; /* Light border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 15px; /* Add some padding */
-  margin-bottom: 20px; /* Add spacing between comments */
-  background-color: #fff; /* White background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
 }
 
-.comment-text {
-  margin-bottom: 10px; /* Add spacing below the comment text */
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .comment-actions {
@@ -20,46 +23,74 @@
 }
 
 .comment-action {
-  background-color: transparent; /* Transparent background */
-  border: none; /* Remove border */
-  cursor: pointer; /* Show pointer cursor on hover */
-  margin-right: 10px; /* Add spacing between action buttons */
-  font-size: 18px; /* Set icon size */
-  color: #999; /* Light gray color */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #999999;
+  margin-right: 10px;
+  
 }
 
 .comment-action:hover {
-  color: #555; /* Darken color on hover */
+  color: #333333;
+}
+
+.comment-info {
+  font-size: 12px;
+  color: #999999;
+}
+
+.comment-text {
+  margin-bottom: 10px;
 }
 
 .timestamp {
   font-style: italic;
-  font-size: 12px;
-  color: #999; /* Light gray color */
 }
 
 .reply-input {
-  margin-top: 15px; /* Add spacing above reply input */
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .reply-input input {
-  width: calc(100% - 80px); /* Adjust input width */
-  padding: 8px; /* Add padding */
-  border: 1px solid #ddd; /* Light border */
-  border-radius: 4px; /* Rounded corners */
-  margin-right: 10px; /* Add spacing between input and button */
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin-right: 10px; /* Adjusted margin for button space */
 }
 
-.submit-reply {
-  background-color: #007bff; /* Blue button background */
-  color: #fff; /* White button text */
-  border: none; /* Remove border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 8px 15px; /* Add padding */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition */
+.submit-reply, .close-reply {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
 }
 
-.submit-reply:hover {
-  background-color: #0056b3; /* Darken background on hover */
+.submit-reply:hover, .close-reply:hover {
+  background-color: #0056b3;
+}
+
+.close-reply {
+  position: absolute;
+  right: 80px; /* Adjusted position */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.comment-action.reply-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.starred{
+    color: greenyellow;
 }

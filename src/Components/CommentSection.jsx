@@ -89,6 +89,7 @@ const CommentSection = () => {
 
   return (
     <div className="comment-section">
+        <h1 className="heading">What's on your mind ?</h1>
       <div className="sort-buttons">
         <button onClick={sortCommentsByLatest}>Sort by Latest</button>
         <button onClick={sortCommentsByMostReplies}>
