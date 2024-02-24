@@ -1,69 +1,58 @@
 import React, { useState, useEffect } from "react";
 import Comment from "./Comment.jsx";
 import CommentInput from "./CommentInput.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./CommentSection.css";
+import "./toaststyles.css";
 
 const CommentSection = () => {
   const [comments, setComments] = useState([]);
-  const [sortingFilter, setSortingFilter] = useState(null); // State to keep track of the current sorting filter
+  const [sortingFilter, setSortingFilter] = useState(null);
 
-  
+  const notify = (message) => {
+    const position = window.innerWidth <= 426 ? "top-right" : "top-center";
+    toast(message, { 
+        position:position,
+         autoClose: 3000 ,
+         className:"toastbody",
+         bodyClassName:"toasbody",
+         draggable:"true",
+        });
+  };
 
   const addComment = (newComment) => {
     setComments([newComment, ...comments]);
+    notify("Comment added successfully!");
   };
 
   const deleteComment = (commentId) => {
-    const deleteRecursive = (comment) => {
-      if (comment.id === commentId) {
-        return null;
-      }
-      if (comment.replies) {
-        const updatedReplies = comment.replies
-          .map((reply) => deleteRecursive(reply))
-          .filter(Boolean);
-        return {
-          ...comment,
-          replies: updatedReplies,
-        };
-      }
-      return comment;
-    };
-
-    const updatedComments = comments
-      .map((comment) => deleteRecursive(comment))
-      .filter(Boolean);
+    const updatedComments = comments.filter(
+      (comment) => comment.id !== commentId
+    );
     setComments(updatedComments);
+    notify("Comment deleted successfully!");
   };
 
   const replyToComment = (parentCommentId, reply) => {
-    const replyRecursive = (comment) => {
+    const updatedComments = comments.map((comment) => {
       if (comment.id === parentCommentId) {
         return {
           ...comment,
           replies: [...comment.replies, reply],
         };
-      } else if (comment.replies) {
-        const updatedReplies = comment.replies.map((reply) =>
-          replyRecursive(reply)
-        );
-        return {
-          ...comment,
-          replies: updatedReplies,
-        };
-      } else {
-        return comment;
       }
-    };
-
-    const updatedComments = comments.map((comment) => replyRecursive(comment));
+      return comment;
+    });
     setComments(updatedComments);
+    notify("Reply added successfully!");
   };
 
   const sortCommentsByLatest = () => {
     const sortedComments = [...comments].reverse();
     setComments(sortedComments);
-    setSortingFilter("latest"); // Set sorting filter to indicate that "Sort by Latest" filter is applied
+    setSortingFilter("latest");
+    notify("Comments sorted by latest!");
   };
 
   const sortCommentsByMostReplies = () => {
@@ -71,17 +60,17 @@ const CommentSection = () => {
       (a, b) => b.replies.length - a.replies.length
     );
     setComments(sortedComments);
-    setSortingFilter("mostReplies"); // Set sorting filter to indicate that "Sort by Most Replies" filter is applied
+    setSortingFilter("mostReplies");
+    notify("Comments sorted by most replies!");
   };
 
   const clearSortingFilter = () => {
-    // Clear the sorting filter and shuffle comments
     setSortingFilter(null);
     shuffleComments();
+    notify("Sorting cleared!");
   };
 
   const shuffleComments = () => {
-    // Shuffle comments randomly
     const shuffledComments = [...comments].sort(() => Math.random() - 0.5);
     setComments(shuffledComments);
   };
@@ -97,6 +86,7 @@ const CommentSection = () => {
       return comment;
     });
     setComments(updatedComments);
+    notify("Comment starred/unstarred!");
   };
 
   return (

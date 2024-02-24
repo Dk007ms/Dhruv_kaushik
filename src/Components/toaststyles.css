@@ -1,0 +1,23 @@
+/* Default styles for larger screens */
+.toastbody {
+  margin: auto;
+  border-radius: 1rem;
+  font-size: large;
+  text-align: center;
+
+  /* Media query for smaller screens */
+  @media screen and (max-width: 600px) {
+    width: 85%;
+    margin: auto;
+    border-radius: 1rem;
+    font-size: medium;
+  }
+  @media screen and (max-width: 426px) {
+    width: 85%;
+    margin: auto;
+    border-radius: 1rem;
+    font-size: medium;
+    left: 1.2rem;
+    position: absolute;
+  }
+}
